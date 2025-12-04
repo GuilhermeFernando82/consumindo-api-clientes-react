@@ -1,0 +1,38 @@
+{
+  "name": "projeto-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeFernando82/tabnews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuilhermeFernando82/tabnews/issues"
+  },
+  "homepage": "https://github.com/GuilhermeFernando82/tabnews#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.555.0",
+    "next": "^13.1.6",
+    "openai": "^6.9.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.10.0",
+    "rehype-highlight": "^7.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  }
+}
