@@ -18,7 +18,7 @@ export default function App() {
   const [isError, setIsError] = useState(false);
 
   const router = useRouter();
-  const api = "https://localhost:7181/Users";
+  const api = "https://api-clientes-82603d31c6f9.herokuapp.com/Users";
 
   const handleLoginChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
