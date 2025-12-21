@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://localhost:7181/Customers",
+  baseURL: "https://api-clientes-82603d31c6f9.herokuapp.com/Customers",
 });
 
 export const configureInterceptors = (router) => {
@@ -28,7 +28,7 @@ export const configureInterceptors = (router) => {
         originalRequest._retry = true;
         try {
           const resp = await axios.post(
-            "https://localhost:7181/Users/refresh-token",
+            "https://api-clientes-82603d31c6f9.herokuapp.com/Users/refresh-token",
             {
               refreshToken: refresh,
             }

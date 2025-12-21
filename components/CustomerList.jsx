@@ -9,16 +9,19 @@ export default function CustomerList({
 }) {
   return (
     <div>
-      {users.map((u) => (
-        <CustomerCard
-          key={u.id}
-          user={u}
-          reload={reload}
-          setMessage={setMessage}
-          setIsError={setIsError}
-          setSearchedUser={setSearchedUser}
-        />
-      ))}
+      {users?.length > 0 ? (
+        users.map((u) => (
+          <CustomerCard
+            key={u.id}
+            user={u}
+            reload={reload}
+            setMessage={setMessage}
+            setIsError={setIsError}
+          />
+        ))
+      ) : (
+        <p>Nenhum cliente cadastrado.</p>
+      )}
     </div>
   );
 }
