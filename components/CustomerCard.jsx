@@ -35,8 +35,8 @@ export default function CustomerCard({ user, reload, setMessage, setIsError }) {
 
     if (cep.length === 8) {
       try {
-        const response = await axios.get(
-          `https://viacep.com.br/ws/${cep}/json/`
+        const response = await aaxios.get(
+          `https://corsproxy.io/?https://viacep.com.br/ws/${cep}/json/`
         );
 
         if (response.data.erro) {

@@ -29,7 +29,9 @@ export default function CustomerModal({
 
     if (cep.replace(/\D/g, "").length === 8) {
       try {
-        const res = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+        const res = await axios.get(
+          `https://corsproxy.io/?https://viacep.com.br/ws/${cep}/json/`
+        );
         if (!res.data.erro) {
           setData((p) => ({
             ...p,
