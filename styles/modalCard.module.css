@@ -1,0 +1,130 @@
+/* Container que cobre a tela toda */
+.modalOverlay {
+  position: fixed;
+  inset: 0; /* Substitui top:0, left:0, right:0, bottom:0 */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Garante que fique acima de tudo */
+}
+
+/* O card central do modal */
+.modalContent {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  border-radius: 24px;
+  width: 95%;
+  max-width: 650px;
+  position: relative; /* Necessário para o botão X absoluto */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Títulos (Padrão Login) */
+.authHeader {
+  margin-bottom: 24px;
+}
+
+.title {
+  color: #f8fafc;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Grade de Inputs */
+.modalFormGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Ocupar linha inteira (Nome) */
+.modalFormGrid > div:first-child {
+  grid-column: span 2;
+}
+
+/* Grupos de Input (Visual Glassmorphism) */
+.inputGroup {
+  position: relative; /* Pai precisa ser relativo */
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.iconWrapper {
+  position: absolute;
+  left: 14px;
+  color: #64748b; /* Cor cinza padrão dos ícones */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Deixa o clique passar para o input */
+  z-index: 2;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 14px 12px 42px; /* 42px é o espaço para o ícone */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+.input:focus {
+  border-color: #3b82f6;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Botões */
+.closeBtnAbsolute {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.closeBtnAbsolute:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submitBtn:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}

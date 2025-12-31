@@ -1,0 +1,175 @@
+/* Container pai precisa ser relativo para o botão se orientar por ele */
+.customerCard {
+  position: relative; /* Adicione isso */
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+/* O Botão X Profissional */
+.closeBtnAbsolute {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.closeBtnAbsolute:hover {
+  background: rgba(239, 68, 68, 0.1); /* Fundo avermelhado sutil */
+  color: #f87171; /* Ícone vermelho */
+  border-color: rgba(239, 68, 68, 0.2);
+  transform: rotate(90deg); /* Efeito de rotação ao passar o mouse */
+}
+
+/* Ajuste do Header de Edição para não bater no botão */
+.editHeader {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.editHeader span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #3b82f6;
+  font-weight: 700;
+}
+
+.editId {
+  font-size: 1.1rem;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.actionFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.customerCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(59, 130, 246, 0.4);
+  transform: translateX(4px);
+}
+
+.viewGrid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.infoPrimary {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 2;
+}
+
+.avatarPlaceholder {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.infoPrimary h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #f8fafc;
+}
+
+.infoPrimary span {
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.locationInfo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btnIconEdit,
+.btnIconDelete {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+  background: rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+}
+
+.btnIconEdit:hover {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+.btnIconDelete:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Estilos de Edição Interna */
+.editGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.inputList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.inputList input {
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.saveActionBtn {
+  align-self: flex-end;
+  background: #22c55e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}

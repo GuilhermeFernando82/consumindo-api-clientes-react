@@ -1,12 +1,18 @@
-import { Pencil, Trash2, Save } from "lucide-react";
+import {
+  Pencil,
+  Trash2,
+  Save,
+  X,
+  MapPin,
+  User,
+  IdentificationCard,
+} from "lucide-react";
 import api from "./api";
 import axios from "axios";
-import styles from "../styles/customerForm.module.css";
+import styles from "../styles/card.module.css"; // Usando o novo CSS global do dashboard
 import { useState } from "react";
-import { useRouter } from "next/router";
 
 export default function CustomerCard({ user, reload, setMessage, setIsError }) {
-  const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [data, setData] = useState({ ...user });
 
@@ -15,12 +21,9 @@ export default function CustomerCard({ user, reload, setMessage, setIsError }) {
 
   const save = async () => {
     try {
-      const response = await api.put(`/id?id=${user.id}`, data);
-      console.log(user);
-
+      await api.put(`/Customers/id?id=${user.id}`, data);
       setEditing(false);
       reload();
-
       setMessage("Cliente atualizado com sucesso!");
       setIsError(false);
     } catch {
@@ -30,40 +33,36 @@ export default function CustomerCard({ user, reload, setMessage, setIsError }) {
   };
 
   const handleCepChange = async (e) => {
-    const cep = e.target.value.replace(/\D/g, "");
-    setData((prev) => ({ ...prev, cep: e.target.value }));
+    const cepValue = e.target.value;
+    const cleanCep = cepValue.replace(/\D/g, "");
+    setData((prev) => ({ ...prev, cep: cepValue }));
 
-    if (cep.length === 8) {
+    if (cleanCep.length === 8) {
       try {
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-
-        if (response.data.erro) {
-          setMessage("CEP não encontrado.");
-          setIsError(true);
-          return;
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cleanCep}/json/`
+        );
+        if (!response.data.erro) {
+          setData((prev) => ({
+            ...prev,
+            publicPlace: response.data.logradouro || "",
+            neighborhood: response.data.bairro || "",
+            city: response.data.localidade || "",
+            state: response.data.uf || "",
+          }));
         }
-
-        setData((prev) => ({
-          ...prev,
-          publicPlace: response.data.logradouro || "",
-          neighborhood: response.data.bairro || "",
-          city: response.data.localidade || "",
-          state: response.data.uf || "",
-        }));
-
-        setMessage("Endereço preenchido automaticamente!");
-        setIsError(false);
-      } catch {
-        setMessage("Erro ao consultar o CEP.");
-        setIsError(true);
+      } catch (error) {
+        console.error("Erro ao buscar CEP");
       }
     }
   };
+
   const del = async () => {
     if (!confirm("Deseja realmente deletar este usuário?")) return;
     try {
-      const response = await api.delete(`/id?id=${user.id}`);
-      setMessage(response.data);
+      await api.delete(`/Customers/id?id=${user.id}`);
+      setMessage("Cliente removido.");
+      setIsError(false);
       reload();
     } catch {
       setMessage("Erro ao deletar cliente.");
@@ -72,63 +71,92 @@ export default function CustomerCard({ user, reload, setMessage, setIsError }) {
   };
 
   return (
-    <div className={styles.userCard}>
+    <div className={styles.customerCard}>
       {editing ? (
-        <>
-          {Object.keys(data)
-            .filter((field) => field !== "id") // 👈 remove o id
-            .map((field) => (
-              <input
-                key={field}
-                name={field}
-                placeholder={field.toUpperCase()}
-                value={data[field]}
-                onChange={field === "cep" ? handleCepChange : handleChange}
-                className={styles.inputField}
-              />
-            ))}
+        <div className={styles.editGrid}>
+          <div className={styles.editHeader}>
+            <span>Editando ID: {user.id}</span>
+            <button
+              onClick={() => setEditing(false)}
+              className={styles.closeBtnAbsolute}
+            >
+              <X size={20} />
+            </button>
+          </div>
 
-          <button
-            className={`${styles.button} ${styles.saveButton}`}
-            onClick={save}
-          >
-            <Save size={16} /> Salvar
+          <div className={styles.inputList}>
+            <input
+              name="name"
+              placeholder="Nome"
+              value={data.name}
+              onChange={handleChange}
+            />
+            <input
+              name="cpf"
+              placeholder="CPF"
+              value={data.cpf}
+              onChange={handleChange}
+            />
+            <input
+              name="cep"
+              placeholder="CEP"
+              value={data.cep}
+              onChange={handleCepChange}
+            />
+            <input
+              name="publicPlace"
+              placeholder="Logradouro"
+              value={data.publicPlace}
+              onChange={handleChange}
+            />
+            <input
+              name="city"
+              placeholder="Cidade"
+              value={data.city}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button className={styles.saveActionBtn} onClick={save}>
+            <Save size={16} /> Salvar Alterações
           </button>
-        </>
+        </div>
       ) : (
-        <>
-          <p>
-            <strong>ID:</strong> {data.id}
-          </p>
-          <p>
-            <strong>Nome:</strong> {data.name}
-          </p>
-          <p>
-            <strong>CPF:</strong> {data.cpf}
-          </p>
-          <p>
-            <strong>CEP:</strong> {data.cep}
-          </p>
-          <p>
-            <strong>Endereço:</strong> {data.publicPlace} - {data.neighborhood}
-          </p>
-          <p>
-            <strong>Cidade:</strong> {data.city}/{data.state}
-          </p>
+        <div className={styles.viewGrid}>
+          <div className={styles.infoPrimary}>
+            <div className={styles.avatarPlaceholder}>
+              {data.name.charAt(0)}
+            </div>
+            <div>
+              <h3>{data.name}</h3>
+              <span>
+                ID: {data.id} • CPF: {data.cpf}
+              </span>
+            </div>
+          </div>
 
-          <button
-            className={`${styles.button} ${styles.editButton}`}
-            onClick={() => setEditing(true)}
-          >
-            <Pencil size={16} /> Editar
-          </button>
-          <button
-            className={`${styles.button} ${styles.deleteButton}`}
-            onClick={del}
-          >
-            <Trash2 size={16} /> Deletar
-          </button>
-        </>
+          <div className={styles.infoSecondary}>
+            <div className={styles.locationInfo}>
+              <MapPin size={14} />
+              <span>
+                {data.publicPlace}, {data.neighborhood} — {data.city}/
+                {data.state}
+              </span>
+            </div>
+          </div>
+
+          <div className={styles.actions}>
+            <button
+              onClick={() => setEditing(true)}
+              className={styles.btnIconEdit}
+            >
+              <Pencil size={18} />
+            </button>
+            <button onClick={del} className={styles.btnIconDelete}>
+              <Trash2 size={18} />
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
