@@ -1,17 +1,23 @@
 .dashboardWrapper {
+  min-height: 100vh; /* Ocupa no MÍNIMO a tela toda */
+  height: auto; /* Deixa o conteúdo esticar o fundo o quanto precisar */
+  width: 100%; /* Nunca use 125vw, isso cria barra lateral branca */
   background: radial-gradient(circle at top left, #1e293b, #0f172a);
+  background-attachment: fixed; /* Opcional: mantém o fundo parado enquanto rola */
   color: #f8fafc;
   font-family: "Inter", sans-serif;
-  box-sizing: border-box;
-  margin: -16px;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
-/* Media Query para Celulares (telas até 768px) */
+
+/* 3. Ajuste a Media Query (Limpando os erros da imagem) */
 @media (max-width: 768px) {
   .dashboardWrapper {
-    height: auto;
-    width: 125vw; /* Alterado para vw para representar largura */
-    /* Se você realmente quis dizer altura, use width: 65vh; mas é incomum */
+    height: 125vh; /* Remove o 100vh fixo que está cortando o fundo */
+    width: 100%; /* Remove o 125vw que está criando buracos */
+    min-height: 100vh;
   }
 }
 /* Navbar */
@@ -173,6 +179,7 @@
   border-radius: 24px;
   padding: 24px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  height: auto;
 }
 
 /* Responsividade */

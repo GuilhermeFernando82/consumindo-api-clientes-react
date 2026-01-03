@@ -54,7 +54,10 @@ export default function CustomersPanel() {
   }, []);
 
   return (
-    <div className={styles.dashboardWrapper}>
+    <div
+      className={styles.dashboardWrapper}
+      style={{ minHeight: "100vh", margin: 0 }}
+    >
       {/* Navbar Superior */}
       <nav className={styles.navBar}>
         <div className={styles.navContent}>

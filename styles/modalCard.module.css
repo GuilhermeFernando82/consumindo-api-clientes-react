@@ -37,7 +37,7 @@
 }
 @media (max-width: 480px) {
   .modalContent {
-    width: 68%;
+    width: 54%;
     padding: 20px; /* Dica: reduzir o padding ajuda a ganhar espaço interno no celular */
   }
 }

@@ -1,0 +1,18 @@
+/* styles/global.css */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  /* Use a cor mais escura do seu gradiente aqui */
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* Garante que o container do Next também ocupe tudo */
+#__next {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
