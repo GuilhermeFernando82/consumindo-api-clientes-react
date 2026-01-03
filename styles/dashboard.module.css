@@ -1,12 +1,19 @@
 .dashboardWrapper {
-  min-height: 100vh;
   background: radial-gradient(circle at top left, #1e293b, #0f172a);
   color: #f8fafc;
   font-family: "Inter", sans-serif;
   box-sizing: border-box;
   margin: -16px;
+  height: 100vh;
 }
-
+/* Media Query para Celulares (telas até 768px) */
+@media (max-width: 768px) {
+  .dashboardWrapper {
+    height: 159vh;
+    width: 125vw; /* Alterado para vw para representar largura */
+    /* Se você realmente quis dizer altura, use width: 65vh; mas é incomum */
+  }
+}
 /* Navbar */
 .navBar {
   background: rgba(15, 23, 42, 0.8);
@@ -54,13 +61,14 @@
 }
 
 .searchBar input {
-  width: 100%;
+  width: 85%;
   padding: 10px 10px 10px 40px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
   color: white;
   transition: 0.3s;
+  margin-left: 6px;
 }
 
 .searchBar input:focus {

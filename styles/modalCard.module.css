@@ -1,7 +1,7 @@
 /* Container que cobre a tela toda */
 .modalOverlay {
   position: fixed;
-  inset: 0; /* Substitui top:0, left:0, right:0, bottom:0 */
+  inset: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
@@ -9,7 +9,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Garante que fique acima de tudo */
+  z-index: 9999;
+}
+
+/* Ajuste para celular */
+@media (max-width: 480px) {
+  .modalOverlay {
+    width: 150vw;
+    height: 150vh;
+    /* Centraliza o overlay maior em relação à viewport */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 /* O card central do modal */
@@ -23,7 +35,12 @@
   position: relative; /* Necessário para o botão X absoluto */
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-
+@media (max-width: 480px) {
+  .modalContent {
+    width: 68%;
+    padding: 20px; /* Dica: reduzir o padding ajuda a ganhar espaço interno no celular */
+  }
+}
 /* Títulos (Padrão Login) */
 .authHeader {
   margin-bottom: 24px;
