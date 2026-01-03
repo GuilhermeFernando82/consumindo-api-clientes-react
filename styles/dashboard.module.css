@@ -9,7 +9,7 @@
 /* Media Query para Celulares (telas até 768px) */
 @media (max-width: 768px) {
   .dashboardWrapper {
-    height: 159vh;
+    height: auto;
     width: 125vw; /* Alterado para vw para representar largura */
     /* Se você realmente quis dizer altura, use width: 65vh; mas é incomum */
   }

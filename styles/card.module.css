@@ -77,6 +77,16 @@
   gap: 20px;
 }
 
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+  .viewGrid {
+    display: grid;
+    grid-template-columns: 1fr; /* Faz com que os itens ocupem toda a largura, um abaixo do outro */
+    gap: 15px; /* Opcional: ajusta o espaçamento entre os itens no grid */
+    align-items: stretch; /* Opcional: faz os itens preencherem a largura total */
+  }
+}
+
 .infoPrimary {
   display: flex;
   align-items: center;
