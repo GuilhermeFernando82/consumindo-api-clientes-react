@@ -81,7 +81,7 @@ export default function AuthPage() {
           </h1>
         </div>
         <div className={styles.authHeader}>
-          <div className={styles.logo}>FC</div>
+          <div className={styles.logo}>GF</div>
           <p>Gerencie seus clientes com eficiência e rapidez.</p>
         </div>
 
