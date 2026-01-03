@@ -79,27 +79,29 @@ export default function AuthPage() {
               ? "Entrar na plataforma"
               : "Criar nova conta"}
           </h1>
+        </div>
+        <div className={styles.authHeader}>
+          <div className={styles.logo}>FC</div>
           <p>Gerencie seus clientes com eficiência e rapidez.</p>
         </div>
 
         <div className={styles.tabSystem}>
           <button
-            className={activeTab === "login" ? styles.activeTab : ""}
-            onClick={() => {
-              setActiveTab("login");
-              setMessage("");
-            }}
+            className={`${styles.tabButton} ${
+              activeTab === "login" ? styles.activeTab : ""
+            }`}
+            onClick={() => setActiveTab("login")}
           >
-            Login
+            Entrar
           </button>
+
           <button
-            className={activeTab === "register" ? styles.activeTab : ""}
-            onClick={() => {
-              setActiveTab("register");
-              setMessage("");
-            }}
+            className={`${styles.tabButton} ${
+              activeTab === "register" ? styles.activeTab : ""
+            }`}
+            onClick={() => setActiveTab("register")}
           >
-            Cadastro
+            Criar Conta
           </button>
         </div>
 
